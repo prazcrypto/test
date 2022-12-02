@@ -1,0 +1,31 @@
+---
+name: FastForward
+listeners:
+  - name: TCP Listener
+    type: tcp
+    port: 9001
+    enabled: no
+  - name: UDP Listener
+    type: udp
+    port: 9002
+    enabled: yes
+  - name: Unix Socket Listener
+    type: unix_socket
+    socket: /tmp/listen.sock
+    enabled: no
+
+sinks:
+  - name: Https forwarder
+    type: http
+    url: https://139.185.47.124:9000
+    api_key: 6535c339bbbc76ffdafc8035cda48f45
+    enabled: yes
+    cache_file_name: http_sink.cache
+    cache size: 10G
+    batch_send: false
+
+acl:
+  allow:
+    - 127.0.0.1
+    - 10.0.0.0/8
+  deny:
