@@ -1,0 +1,6 @@
+﻿NAME,TYPE,LOCATION,
+"diskjockey","Virtual machine","East Asia"
+"diskjockey-ip","Public IP address","East Asia"
+"diskjockey-nsg","Network security group","East Asia"
+"diskjockey901","Network Interface","East Asia"
+"diskjockey_disk1_46e4095b310546fe816235fa4b9b62d8","Disk","East Asia"
