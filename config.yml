@@ -1,28 +1,43 @@
 ---
 name: FastForward
+loglevel: warn
+
 listeners:
   - name: TCP Listener
     type: tcp
     port: 9001
-    enabled: no
+    enabled: yes
   - name: UDP Listener
     type: udp
     port: 9002
     enabled: yes
+  - name: HTTP Listener
+    type: http
+    port: 8088
+    enabled: true
   - name: Unix Socket Listener
-    type: unix_socket
+    type: uds
     socket: /tmp/listen.sock
     enabled: no
 
 sinks:
   - name: Https forwarder
     type: http
-    url: https://139.185.47.124:9000
-    api_key: 6535c339bbbc76ffdafc8035cda48f45
+    url: http://localhost:8080
+    api_key: some_random_api_key
     enabled: yes
-    cache_file_name: http_sink.cache
-    cache size: 10G
     batch_send: false
+    cache_file_name: http_sink.cache
+    cache_size: 1G
+  - name: Console print
+    type: stdout
+    enabled: no
+    batch_send: no
+  - name: Save into file
+    type: file
+    path: /tmp/events.log
+    enabled: no
+    batch_send: true
 
 acl:
   allow:
